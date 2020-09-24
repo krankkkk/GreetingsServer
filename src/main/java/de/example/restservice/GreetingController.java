@@ -152,7 +152,7 @@ public final class GreetingController
 	{
 		try
 		{
-			PostGres.getCreate().transaction( configuration -> {
+			PostGres.getCreate().transaction(configuration -> {
 				final int result = DSL.using(configuration).insertInto(TABLE_GREETING)
 						.values(greeting.getId(), greeting.getContent(), greeting.getTimestamp())
 						.execute();
