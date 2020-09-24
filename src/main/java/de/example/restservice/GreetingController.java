@@ -6,6 +6,7 @@ import org.jooq.Record;
 import org.jooq.Record1;
 import org.jooq.Result;
 import org.jooq.exception.DataAccessException;
+import org.jooq.impl.DSL;
 import org.postgresql.util.PSQLException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -151,18 +152,21 @@ public final class GreetingController
 	{
 		try
 		{
-			final int result = PostGres.getCreate().insertInto(TABLE_GREETING)
-					.values(greeting.getId(), greeting.getContent(), greeting.getTimestamp())
-					.execute();
+			PostGres.getCreate().transaction( configuration -> {
+				final int result = DSL.using(configuration).insertInto(TABLE_GREETING)
+						.values(greeting.getId(), greeting.getContent(), greeting.getTimestamp())
+						.execute();
 
-			if (result == 1)
-			{
-				Log.trace(getClass(), () -> "Inserted Greeting: " + greeting.toString());
-			}
-			else
-			{
-				Log.warn(getClass(), "Could not Insert Greeting: " + greeting.toString());
-			}
+				if (result == 1)
+				{
+					Log.trace(getClass(), () -> "Inserted Greeting: " + greeting.toString());
+				}
+				else
+				{
+					Log.warn(getClass(), "Could not Insert Greeting: " + greeting.toString());
+				}
+			});
+
 
 		}
 		catch (final DataAccessException e)
