@@ -1,0 +1,7 @@
+/logs/
+/gradle/wrapper/gradle-wrapper.jar
+/.idea/
+/.gradle/
+/out/
+/gradlew
+/gradlew.bat
