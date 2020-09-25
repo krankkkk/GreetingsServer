@@ -32,7 +32,7 @@ public final class GreetingController
 
 	public int getLastNumber()
 	{
-		final Result<Record1<Integer>> result = PostGres.getCreate().select(FIELD_GREETING_ID)
+		final Result<Record1<Integer>> result = PostGres.getContext().select(FIELD_GREETING_ID)
 				.from(TABLE_GREETING)
 				.orderBy(FIELD_GREETING_ID.desc())
 				.limit(1)
@@ -93,7 +93,7 @@ public final class GreetingController
 			return null;
 		}
 
-		final List<Record> result = PostGres.getCreate().select().from(TABLE_GREETING).where(
+		final List<Record> result = PostGres.getContext().select().from(TABLE_GREETING).where(
 				FIELD_GREETING_ID.eq(inline(parsedID))).fetch();
 
 		if (result.isEmpty())
@@ -133,7 +133,7 @@ public final class GreetingController
 	private Collection<Greeting> getAllGreetings()
 	{
 
-		final List<Record> results = PostGres.getCreate().select().from(table(PG_SCHEMA + '.' + PG_GREETING_TABLE_NAME)).fetch();
+		final List<Record> results = PostGres.getContext().select().from(table(PG_SCHEMA + '.' + PG_GREETING_TABLE_NAME)).fetch();
 
 		final Collection<Greeting> result = new ArrayList<>(results.size());
 
@@ -152,7 +152,7 @@ public final class GreetingController
 	{
 		try
 		{
-			PostGres.getCreate().transaction(configuration -> {
+			PostGres.getContext().transaction(configuration -> {
 				final int result = DSL.using(configuration).insertInto(TABLE_GREETING)
 						.values(greeting.getId(), greeting.getContent(), greeting.getTimestamp())
 						.execute();

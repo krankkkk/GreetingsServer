@@ -16,7 +16,7 @@ public final class PostGres
 
 	private final Connection connection;
 	private static PostGres INSTANCE = null;
-	private static DSLContext create = null;
+	private static DSLContext CONTEXT = null;
 
 	public static PostGres getInstance()
 	{
@@ -27,13 +27,13 @@ public final class PostGres
 		return INSTANCE;
 	}
 
-	public static DSLContext getCreate()
+	public static DSLContext getContext()
 	{
-		if (create == null)
+		if (CONTEXT == null)
 		{
-			create = DSL.using(getInstance().getConnection(), SQLDialect.POSTGRES);
+			CONTEXT = DSL.using(getInstance().getConnection(), SQLDialect.POSTGRES);
 		}
-		return create;
+		return CONTEXT;
 	}
 
 
