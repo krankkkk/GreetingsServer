@@ -44,7 +44,8 @@ public final class PostGres
 	                 @NonNull final String password)
 			throws SQLException
 	{
-		this.connection = DriverManager.getConnection("jdbc:postgresql://" + host + ':' + port + '/' + schema, user, password);
+		final String url = String.format("jdbc:postgresql://%s:%s/%s", host, port, schema);
+		this.connection = DriverManager.getConnection(url, user, password);
 	}
 
 
@@ -80,23 +81,13 @@ public final class PostGres
 		}
 	}
 
-	public static PostGres ofDefault()
+	private static PostGres ofDefault()
 	{
-		final PostGres pg = PostGres.of("localhost",
-		                                "5432",
-		                                "Spring",
-		                                "SpringUser",
-		                                "SpringPassword");
-		try
-		{
-			pg.getConnection().setAutoCommit(true);
-
-		}
-		catch (final SQLException e)
-		{
-			Log.error(PostGres.class, "Exception occurred while setting AutoCommit off", e);
-		}
-		return pg;
+		return PostGres.of("localhost",
+		                   "5432",
+		                   "Spring",
+		                   "SpringUser",
+		                   "SpringPassword");
 	}
 
 
