@@ -12,7 +12,7 @@ public final class Log
 	private static String getFormattedMessage(final Class<?> caller, final String message)
 	{
 		final String callerName = caller.getSimpleName();
-		return String.format("[%s] %s", callerName, message);
+		return String.format("[%s]: %s", callerName, message);
 	}
 
 	//INFO
