@@ -13,7 +13,7 @@ public final class ArrayUtils
 			return false;
 		}
 
-		return Arrays.stream(objects).anyMatch(Objects::isNull);
+		return Arrays.stream(objects).noneMatch(Objects::isNull);
 	}
 
 

@@ -10,8 +10,8 @@ class ArrayUtilsTest
 	@Test
 	void allNonNull()
 	{
-		assertFalse(ArrayUtils.allNonNull());
-		assertTrue(ArrayUtils.allNonNull((Object) null));
+		assertTrue(ArrayUtils.allNonNull());
+		assertFalse(ArrayUtils.allNonNull((Object) null));
 		assertFalse(ArrayUtils.allNonNull((Object[]) null));
 	}
 }
