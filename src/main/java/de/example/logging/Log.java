@@ -25,20 +25,14 @@ public final class Log
 	public static void info(final Class<?> caller,
 	                        final Supplier<String> message)
 	{
-		if (logger.isInfoEnabled())
-		{
-			info(caller, message.get(), null);
-		}
+		info(caller, message.get(), null);
 	}
 
 	public static void info(final Class<?> caller,
 	                        final Supplier<String> message,
 	                        final Throwable t)
 	{
-		if (logger.isInfoEnabled())
-		{
-			info(caller, message.get(), t);
-		}
+		info(caller, message.get(), t);
 	}
 
 	public static void info(final Class<?> caller,
@@ -58,20 +52,14 @@ public final class Log
 	public static void warn(final Class<?> caller,
 	                        final Supplier<String> message)
 	{
-		if (logger.isWarnEnabled())
-		{
-			warn(caller, message.get());
-		}
+		warn(caller, message.get());
 	}
 
 	public static void warn(final Class<?> caller,
 	                        final Supplier<String> message,
 	                        final Throwable t)
 	{
-		if (logger.isWarnEnabled())
-		{
-			warn(caller, message.get(), t);
-		}
+		warn(caller, message.get(), t);
 	}
 
 	public static void warn(final Class<?> caller,
@@ -91,20 +79,14 @@ public final class Log
 	public static void error(final Class<?> caller,
 	                         final Supplier<String> message)
 	{
-		if (logger.isErrorEnabled())
-		{
-			error(caller, message.get(), null);
-		}
+		error(caller, message.get(), null);
 	}
 
 	public static void error(final Class<?> caller,
 	                         final Supplier<String> message,
 	                         final Throwable t)
 	{
-		if (logger.isErrorEnabled())
-		{
-			error(caller, message.get(), t);
-		}
+		error(caller, message.get(), t);
 	}
 
 	public static void error(final Class<?> caller,
@@ -124,20 +106,14 @@ public final class Log
 	public static void debug(final Class<?> caller,
 	                         final Supplier<String> message)
 	{
-		if (logger.isDebugEnabled())
-		{
-			debug(caller, message.get(), null);
-		}
+		debug(caller, message.get(), null);
 	}
 
 	public static void debug(final Class<?> caller,
 	                         final Supplier<String> message,
 	                         final Throwable t)
 	{
-		if (logger.isDebugEnabled())
-		{
-			debug(caller, message.get(), t);
-		}
+		debug(caller, message.get(), t);
 	}
 
 	public static void debug(final Class<?> caller,
@@ -157,20 +133,14 @@ public final class Log
 	public static void trace(final Class<?> caller,
 	                         final Supplier<String> message)
 	{
-		if (logger.isTraceEnabled())
-		{
-			trace(caller, message.get(), null);
-		}
+		trace(caller, message.get(), null);
 	}
 
 	public static void trace(final Class<?> caller,
 	                         final Supplier<String> message,
 	                         final Throwable t)
 	{
-		if (logger.isTraceEnabled())
-		{
-			trace(caller, message.get(), t);
-		}
+		trace(caller, message.get(), t);
 	}
 
 	public static void trace(final Class<?> caller,
@@ -179,7 +149,6 @@ public final class Log
 	{
 		logger.trace(getFormattedMessage(caller, message), t);
 	}
-
 
 	private Log()
 	{
